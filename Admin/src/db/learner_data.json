@@ -1,58 +1,49 @@
 {
-    "learner" : [
-        {
-            "id" : "Tiger Nixon",
-            "password" : "System Architect",
-            "name" : "Edinburgh",
-            "gender" : "남",
-            "birthday" : "2011-04-25",
-            "tel" : "010-6778-3262",
-            "email" : "tkhoon3@naver.com"
-        },
-        {
-            "id" : "kwak",
-            "password" : "aaaa1111!",
-            "name" : "kwak",
-            "gender" : "남",
-            "birthday" : "2022-08-01",
-            "tel" : "1234567890",
-            "email" : "hykwak@naver.com"
-        },
-        {
-            "id" : "test1",
-            "password" : "tect",
-            "name" : "Egh",
-            "gender" : "여",
-            "birthday" : "2022-08-12",
-            "tel" : "010-6778-3262",
-            "email" : "tkhoon@3naver.com"
-        },
-        {
-            "id" : "kim",
-            "password" : "brad123",
-            "name" : "김",
-            "gender" : "남",
-            "birthday" : "2011-04-25",
-            "tel" : "010-6778-3262",
-            "email" : "tkhoon@3naver.com"
-        },
-        {
-            "id" : "dong",
-            "password" : "t",
-            "name" : "동",
-            "gender" : "남",
-            "birthday" : "2011-04-25",
-            "tel" : "010-6778-3262",
-            "email" : "tkhoon@3naver.com"
-        },
-        {
-            "id" : "uk",
-            "password" : "ct",
-            "name" : "욱",
-            "gender" : "남",
-            "birthday" : "2011-04-25",
-            "tel" : "010-6778-3262",
-            "email" : "tkhoon@3naver.com"
-        }
-    ]
+  "learner": [
+    {
+      "id": "uk",
+      "password": "ct",
+      "name": "욱",
+      "gender": "남",
+      "birthday": "2011-04-25",
+      "tel": "010-6778-3262",
+      "email": "tkhoon@3naver.com"
+    },
+    {
+      "id": "kim",
+      "password": "ct",
+      "name": "욱",
+      "gender": "여",
+      "birthday": "2011-04-25",
+      "tel": "010-6778-3262",
+      "email": "tkhoon@3naver.com"
+    },
+    {
+      "id": "dong",
+      "password": "ct",
+      "name": "욱",
+      "gender": "남",
+      "birthday": "2011-04-25",
+      "tel": "010-6778-3262",
+      "email": "tkhoon@3naver.com"
+    },
+    {
+      "id": "test",
+      "password": "ct",
+      "name": "욱",
+      "gender": "남",
+      "birthday": "2011-04-25",
+      "tel": "010-6778-3262",
+      "email": "tkhoon@3naver.com"
+    },
+    {
+      "id": "asdf",
+      "password": "ct",
+      "name": "욱",
+      "gender": "남",
+      "birthday": "2011-04-25",
+      "tel": "010-6778-3262",
+      "email": "tkhoon@3naver.com"
+    }
+  ]
 }

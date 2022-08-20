@@ -9,8 +9,6 @@ import Scheme from "./Scheme";
 const Table = (props) => {
 
   const words = useFetch(`http://localhost:3001/learner`);
-  console.log(words)
-
 
   useEffect(() => {
     const datatablesSimple = document.getElementById("datatablesSimple");

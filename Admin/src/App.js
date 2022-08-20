@@ -7,6 +7,7 @@ import SideNav from "./components/UI/SideNav";
 
 import Learner from "./components/Screens/Learner";
 import Teacher from "./components/Screens/Teacher";
+import Learner_rewrite from "./components/Screens/Learner_rewrite";
 
 function App() {
   return (
@@ -22,7 +23,9 @@ function App() {
             <Route exact path="/" element={<Main />} />
             <Route path="/main2" element={<Main2 />} />
             <Route path="/learner" element={<Learner />} />
+            <Route path="/learner-rewrite/:id" element={<Learner_rewrite />} />
             <Route path="/teacher" element={<Teacher />} />
+            
 
             {/* <Route path="*" element={<EmptyPage />} /> */}
           </Routes>
