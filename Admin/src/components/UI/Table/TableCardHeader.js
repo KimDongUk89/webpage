@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const TableCardHeader = (props) => {
   return (
     <div className="card-header">
@@ -7,9 +9,9 @@ const TableCardHeader = (props) => {
         </div>
 
         <div className="justify-content-end">
-          <button id="Add" className="btn btn-primary btn-xs">
+          <Link to={`/${props.type}-create`} id="Add" className="btn btn-primary btn-xs">
             추가
-          </button>
+          </Link>
         </div>
       </div>
     </div>

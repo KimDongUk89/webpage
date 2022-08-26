@@ -4,11 +4,11 @@ const Scheme = (props) => {
   return (
     <>
       <thead>
-        <tr>{head}</tr>
+        <tr key={'column'}>{head}</tr>
       </thead>
 
       <tfoot>
-        <tr>{head}</tr>
+        <tr key={'column'}>{head}</tr>
       </tfoot>
     </>
   );

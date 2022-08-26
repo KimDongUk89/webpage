@@ -17,8 +17,8 @@ const Teacher = () => {
         </ol>
 
         <TableCard className="mb-4">
-          <TableCardHeader name="강의자" />
-          <Table scheme={TEARNER_SCHEME} />
+          <TableCardHeader name="강의자" type={'teacher'} />
+          <Table scheme={TEARNER_SCHEME} type={'teacher'}/>
         </TableCard>
 
         {/* <div style="height: 20vh"></div> */}

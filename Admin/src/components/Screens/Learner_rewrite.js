@@ -1,75 +1,147 @@
-import Table from "../UI/Table/Table";
-import TableCard from "../UI/Table/TableCard";
-import TableCardHeader from "../UI/Table/TableCardHeader";
-import { LEARNER_SCHEME } from "../Data/UserTitle"
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useFetch from "../../hooks/useFetch";
+import useInput from "../../hooks/useInput";
 import { useEffect, useState } from "react";
+import InputID from "../UI/Input/InputID";
+import InputPassword from "../UI/Input/InputPassword";
+import InputName from "../UI/Input/InputName";
+import InputBirthday from "../UI/Input/InputBirthday";
+import InputEmail from "../UI/Input/InputEmail";
+import InputTel from "../UI/Input/InputTel";
+import InputEtc from "../UI/Input/InputEtc";
+import SaveBtn from "../UI/Button/SaveBtn";
+import CancelBtn from "../UI/Button/CancelBtn";
+import InputGender from "../UI/Input/InputGender";
 
+const Learner_rewrite = () => {
+  const { id } = useParams();
+  const history = useNavigate();
+  const data = useFetch(`http://localhost:3001/learner?id=${id}`)[0];
+  //Get방식
 
-const Learner_rewrite = () =>{
-    const {id} = useParams();
-    const data = useFetch(`http://localhost:3001/learner?id=${id}`)[0];
-    const [selected, setSeleted] = useState('');
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const [gender, setGender] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [tel, setTel] = useState("");
+  const [email, setEmail] = useState("");
+  const [etc, setEtc] = useState("");
 
-    useEffect(()=>{
-        setSeleted(data?.gender);
-    }, [data?.gender]);
+  useEffect(() => {
+    setGender(data?.gender);
+    setName(data?.name);
+    setEmail(data?.email);
+    setTel(data?.tel);
+    setBirthday(data?.birthday);
+    setEtc(data?.etc);
+  }, [
+    data?.gender,
+    data?.name,
+    data?.email,
+    data?.tel,
+    data?.birthday,
+    data?.etc,
+  ]);
 
-    const handleChange = e=>{
-        if(selected==='남'){
-            setSeleted('여');
-        }else{
-            setSeleted('남');
-        }
-    }
+  function onSubmit(event) {
+    event.preventDefault();
 
-    return (
-        <main>
-          <div className="container-fluid px-4">
-            <h1 className="mt-4">학습자 수정</h1>
+    fetch(`http://localhost:3001/learner/${data?.id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        id: id,
+        password: password,
+        name: name,
+        gender: gender,
+        birthday: birthday,
+        tel: tel,
+        email: email,
+        etc: etc,
+      }),
+    })
+      .then((res) => {
+        res.json();
+      })
+      .then((data) => {
+        alert("수정이 완료되었습니다.");
+        history("/learner");
+      });
+  }
 
-            <div className="card-body">
-                <h6 className="m-0 font-weight-bold text-primary">ID</h6>
-                <input type="text" className="form-control" name="learner_id" defaultValue={data?.id} style={{width:"300px"}} readOnly /><br />
+  return (
+    <form onSubmit={onSubmit}>
+      <div className="container-fluid px-4">
+        <h1 className="mt-4">학습자 수정</h1>
 
-                <h6 className="m-0 font-weight-bold text-primary">비밀번호</h6>
-                <input type="password" className="form-control" id="Pwd" placeholder="비밀번호" name="password"
-                   maxLength="16" required="required"
-                   pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
-                   style={{width:"300px", display:"inline-block"}}></input>
-                <span style={{display:"inline-block"}}>(최소 8자리에서 최대 16자리까지 숫자, 영문, 특수문자 각 1개 이상 포함)</span><br /><br />
-
-                <h6 className="m-0 font-weight-bold text-primary">이름</h6>
-                <input type="text" className="form-control" id="Lname" name="lname" defaultValue={data?.name} maxLength="10" required="required" style={{width:"300px"}} /><br />
-
-                <h6 className="m-0 font-weight-bold text-primary">성별</h6>
-                <input type="radio" name="Gender" value="남" checked={selected==='남'} onChange={handleChange} />남 
-                <input type="radio" name="Gender" value="여" checked={selected==='여'} onChange={handleChange} />여<br /><br />
-
-                <h6 className="m-0 font-weight-bold text-primary">생일</h6>
-                <input type="date" name="birthday" style={{width:"300px"}} /><br /><br />
-
-                <h6 className="m-0 font-weight-bold text-primary">전화번호</h6>
-                <input type="tel" className="form-control" pattern="^[0-9]+$" style={{width:"300px", display:"inline-block"}} name="Tel" />
-                <span style={{display:"inline-block"}}>( '-' 없이 입력해주세요.)</span><br /><br />
-
-                <h6 className="m-0 font-weight-bold text-primary">Email</h6>
-                <input type="text" className="form-control" name="email" id="Email" style={{width:"300px", display:"inline-block"}} /><br /><br />
-
-                <h6 className="m-0 font-weight-bold text-primary">기타</h6>
-                <textarea name="etc" cols="37" rows="10" ></textarea><br /><br />
-
-                <button id="Save" type="submit" className="btn btn-primary btn-xs">
-                저장
-                </button>
-                <button type="button" id="Cancel" className="btn btn-danger btn-xs">
-                취소
-                </button>
-            </div>
-          </div>
-        </main>
-      );
+        <div className="card-body">
+          <InputID id={data?.id} />
+          <br /><br />
+          <InputPassword 
+            Password={password}
+            onChange={(e) =>{
+                setPassword(e.target.value);
+            }}
+           />
+          <br />
+          <br />
+          <InputName
+            name={name}
+            onChange={(e) => {
+              setName(e.target.value);
+            }}
+          />
+          <br />
+          <InputGender
+            selected={gender}
+            onChange={(e) => {
+              setGender(e.target.value);
+            }}
+          />
+          <br />
+          <br />
+          <InputBirthday
+            Birthday={birthday}
+            onChange={(e) => {
+              setBirthday(e.target.value);
+            }}
+          />
+          <br />
+          <br />
+          <InputTel
+            tel={tel}
+            onChange={(e) => {
+              setTel(e.target.value);
+            }}
+          />
+          <br />
+          <br />
+          <InputEmail
+            email={email}
+            onChange={(e) => {
+              setEmail(e.target.value);
+            }}
+          />
+          <br />
+          <br />
+          <InputEtc
+            etc={etc}
+            onChange={(e) => {
+              setEtc(e.target.value);
+            }}
+          />
+          <br />
+          <br />
+          <SaveBtn />
+          <CancelBtn 
+            props={'learner'}
+            />
+        </div>
+      </div>
+    </form>
+  );
 };
 
 export default Learner_rewrite;
